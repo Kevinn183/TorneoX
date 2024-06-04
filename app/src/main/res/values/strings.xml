@@ -99,10 +99,21 @@
     <string name="registrar">REGISTRAR</string>
 
     <!-- Perfil -->
-    <string name="num_vic">Número de victorias :  </string>
-    <string name="num_part">Número de participaciones :  </string>
-    <string name="corr_per">Correo :  </string>
+    <string name="num_vic">Número de victorias:</string>
+    <string name="num_part">Número de participaciones:</string>
+    <string name="corr_per">Correo:</string>
     <string name="elegir_imagen">ELIGE UNA IMAGEN DE PRFIL</string>
     <string name="nueva_pass">INTRODUCE LA NUEVA CONTRASEÑA</string>
+
+    <!-- Ranking -->
+    <string name="num_vic_rank">Num. Vict:</string>
+    <string name="num_part_rank">Num. Part:</string>
+
+    <!-- Spinner -->
+    <string-array name="spinner_orden">
+        <item>victorias</item>
+        <item>participaciones</item>
+        <item>nombre</item>
+    </string-array>
 
 </resources>

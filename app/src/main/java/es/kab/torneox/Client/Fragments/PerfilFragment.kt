@@ -68,9 +68,9 @@ class PerfilFragment : Fragment() {
                 if (user != null){
                     nom = user["nombre"] as? String ?: ""
                     part += user["participaciones"] as? Number?: 0
-                    vict += user["victorias"] as? Number?: 0
-                    corr += user["correo"] as? String ?: ""
-                    pass = user["contraseña"] as? String ?: ""
+                    vict += (" " + user["victorias"] as? Number) ?: 0
+                    corr += (" " + user["correo"] as? String) ?: ""
+                    pass = (" " + user["contraseña"] as? String) ?: ""
                     foto = user["imagen"] as? String ?: ""
 
                 }

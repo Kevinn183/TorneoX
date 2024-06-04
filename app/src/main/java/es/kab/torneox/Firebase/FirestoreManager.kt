@@ -105,6 +105,30 @@ class FirestoreManager {
         return ""
     }
 
+    suspend fun getUsers(orden: String, limite:Long?): List<User>? {
+        return try {
+            var query = firestore.collection("usuarios")
+                .orderBy(orden,Query.Direction.DESCENDING)
+            if (limite != null) {
+                query = query.limit(limite)
+            }
+
+            val snapshot = query.get().await()
+
+            val usuariosList = mutableListOf<User>()
+            for (document in snapshot.documents) {
+                val usuario = document.toObject(User::class.java)
+                if (usuario != null) {
+                    usuariosList.add(usuario)
+                }
+            }
+            usuariosList
+        } catch (e: Exception) {
+            println(e.message)
+            null
+        }
+    }
+
     fun getUserIdFromEmail(email: String): Task<String?> {
         val query = firestore.collection("usuarios").whereEqualTo("correo", email)
 
