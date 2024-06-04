@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TorneoX" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/principal_dark</item>
+        <item name="colorPrimaryVariant">@color/principal</item>
+        <item name="colorOnPrimary">@color/black</item>
+    </style>
+
+    <style name="Theme.TorneoX" parent="Base.Theme.TorneoX" />
+</resources>

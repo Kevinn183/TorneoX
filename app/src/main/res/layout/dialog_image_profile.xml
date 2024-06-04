@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/fondo_dialog">
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/elegir_imagen"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:paddingBottom="20dp">
+    </TextView>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="3"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/dialog_image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avatar1"
+            android:onClick="onImageClicked"
+            android:tag="avatar1"/>
+
+        <ImageView
+            android:id="@+id/dialog_image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avatar2"
+            android:onClick="onImageClicked"
+            android:tag="avatar2"/>
+
+        <ImageView
+            android:id="@+id/dialog_image3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avatar3"
+            android:onClick="onImageClicked"
+            android:tag="avatar3"/>
+
+        <ImageView
+            android:id="@+id/dialog_image4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avatar4"
+            android:onClick="onImageClicked"
+            android:tag="avatar4"/>
+
+        <ImageView
+            android:id="@+id/dialog_image5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avatar5"
+            android:onClick="onImageClicked"
+            android:tag="avatar5"/>
+
+        <ImageView
+            android:id="@+id/dialog_image6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avatar6"
+            android:onClick="onImageClicked"
+            android:tag="avatar6"/>
+
+    </GridLayout>
+
+</LinearLayout>

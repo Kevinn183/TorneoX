@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/fondo_dialog"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/newName_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registrar_nombre"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/newName_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:backgroundTint="@color/white"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/newName_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registrar"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:padding="12dp"/>
+</LinearLayout>

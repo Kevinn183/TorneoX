@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "727582869176",
+    "project_id": "torneox-1e7cb",
+    "storage_bucket": "torneox-1e7cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727582869176:android:087b6414dee3f49f3e964d",
+        "android_client_info": {
+          "package_name": "es.kab.torneox"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWa2HAv8Hd9rseFt-KJThjUnM28GwFvO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

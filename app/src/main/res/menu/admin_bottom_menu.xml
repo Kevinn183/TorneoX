@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_crear_encuestas"
+        android:enabled="true"
+        android:icon="@drawable/juego_pingpong"
+        android:title="@string/crear_encuestas"
+        />
+    <item
+        android:id="@+id/item_activos"
+        android:enabled="true"
+        android:icon="@drawable/juego_pingpong"
+        android:title="@string/torneos_activos"
+        />
+    <item
+        android:id="@+id/item_crear"
+        android:enabled="true"
+        android:icon="@drawable/juego_pingpong"
+        android:title="@string/crear_torneos"
+        />
+    <item
+        android:id="@+id/item_lista"
+        android:enabled="true"
+        android:icon="@drawable/juego_pingpong"
+        android:title="@string/lista_usuarios"
+        />
+    <item
+        android:id="@+id/item_historial"
+        android:enabled="true"
+        android:icon="@drawable/juego_pingpong"
+        android:title="@string/historial_torneos"
+        />
+</menu>

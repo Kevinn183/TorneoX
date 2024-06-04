@@ -1,0 +1,108 @@
+<resources>
+    <!-- Strings temporales INGLES -->
+    <string name="app_name">TorneoX</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="login">LOGIN</string>
+    <string name="start">START</string>
+    <string name="liga" translatable="false">LA LIGA</string>
+    <string name="mundial">WORLD CUP</string>
+    <string name="make11">YOU 11</string>
+    <string name="captu">Screenshot</string>
+    <string name="logout">LOG OUT</string>
+    <string name="no_account">You don\'t have an account? Register now </string>
+    <string name="create_account">CREATE ACCOUNT </string>
+    <string name="bdo">BALLON D\'OR</string>
+    <string name="perm">Permission needed</string>
+    <string name="empty">There can\'t be empty fields</string>
+    <string name="nopass">Passwords don\'t match</string>
+    <string name="forget_pass">Recover password</string>
+    <string name="chpass">CHANGE PASSWORD</string>
+    <string name="mail">Email</string>
+    <string name="chat" translatable="false">Chat</string>
+    <string name="back_color">Background color </string>
+    <string name="change">CHANGE</string>
+    <string name="general" translatable="false">General</string>
+    <string name="cache" translatable="false">Cache</string>
+    <string name="offline" translatable="false">Offline</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="exit">Coming out</string>
+    <string name="settings">SETTINGS</string>
+    <string name="last_win">Last win</string>
+    <string name="messages">Messages</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!-- Buenos -->
+
+    <!-- Registro / Inicio de sesion / Recuperar contraseña-->
+    <string name="fecha">dd/mm/aaa</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="contra">Contraseña</string>
+    <string name="confirmar_contra">Confirmar contraseña</string>
+    <string name="crear_cuenta">CREAR CUENTA</string>
+
+    <string name="casilla_vacia">No puede haber casillas vacias</string>
+    <string name="contrasenya_diferente">Las contraseñas no coinciden</string>
+    <string name="contrasenya_corta">La contraseña tiene que tener minimo 8 caracteres</string>
+    <string name="contrasenya_insegura">La contraseña tiene que tener minimo un número y una letra</string>
+    <string name="cuenta_existente">Este correo electronico ya esta asociado a una cuenta</string>
+    <string name="correo_invalido">El formato del correo electronico no es válido</string>
+    <string name="edad_insuficiente">El usuario no tiene la suficiente edad para usar la app</string>
+
+    <string name="no_usuario">El usuario introducido no existe</string>
+    <string name="registro">REGISTRARSE</string>
+    <string name="iniciar">INICIAR SESIÓN</string>
+    <string name="recuperar">Recuperar contraseña</string>
+
+    <string name="cambiar">CAMBIAR CONTRASEÑA</string>
+    <string name="cambiar_contr">CAMBIAR</string>
+    <string name="mira_email">Mira tu correo</string>
+    <string name="recu_contra">Recuperación de contraseña</string>
+    <string name="revisa_correo">Por favor, revisa tu correo electrónico para continuar con el proceso de recuperación de contraseña</string>
+
+    <!-- Menu inferior -->
+    <!-- Cliente -->
+    <string name="encuestas">ENCUESTAS</string>
+    <string name="torneos">TORNEOS</string>
+    <string name="inicio">INICIO</string>
+    <string name="ranking">RANKING</string>
+    <string name="perfil">PERFIL</string>
+
+    <!-- Admin -->
+    <string name="crear_encuestas">CREAR ENCUESTAS</string>
+    <string name="torneos_activos">TORNEOS ACTIVOS</string>
+    <string name="crear_torneos">CREAR TORNEOS</string>
+    <string name="lista_usuarios">LISTA DE USUARIOS</string>
+    <string name="historial_torneos">HISTORIAL</string>
+
+    <!-- Menu superior -->
+    <string name="cambiar_idioma">IDIOMA</string>
+    <string name="cerrar_sesion">CERRAR SESIÓN</string>
+
+    <!-- Dialog nuevo nombre -->
+    <string name="registrar_nombre">INTRODUCE EL NOMBRE DE USUARIO</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="registrar">REGISTRAR</string>
+
+    <!-- Perfil -->
+    <string name="num_vic">Número de victorias :  </string>
+    <string name="num_part">Número de participaciones :  </string>
+    <string name="corr_per">Correo :  </string>
+    <string name="elegir_imagen">ELIGE UNA IMAGEN DE PRFIL</string>
+    <string name="nueva_pass">INTRODUCE LA NUEVA CONTRASEÑA</string>
+
+</resources>

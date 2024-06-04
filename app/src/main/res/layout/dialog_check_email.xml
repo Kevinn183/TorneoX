@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/fondo_dialog">
+
+    <TextView
+        android:id="@+id/recover_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recu_contra"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:paddingBottom="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/recover_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/revisa_correo"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:paddingBottom="20dp">
+    </TextView>
+
+    <Button
+        android:id="@+id/button_recover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:gravity="center"
+        android:textColor="@color/white">
+    </Button>
+
+
+</LinearLayout>
