@@ -36,7 +36,7 @@ class ControlActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener
     override fun onLgnButtonCLicked() {
 
         var user = authManager.getUserEmail()
-        if (user.equals("admin@admin.com")){
+        if (user.equals("admin@gmail.com")){
             val intent = Intent(this, AdminActivity::class.java)
             startActivity(intent)
         }else{

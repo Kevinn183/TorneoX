@@ -109,6 +109,9 @@
     <string name="num_vic_rank">Num. Vict:</string>
     <string name="num_part_rank">Num. Part:</string>
 
+    <!-- Lista usuarios -->
+    <string name="buscar">Buscar:</string>
+
     <!-- Spinner -->
     <string-array name="spinner_orden">
         <item>victorias</item>
