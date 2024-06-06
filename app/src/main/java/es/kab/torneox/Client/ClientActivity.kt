@@ -44,7 +44,7 @@ class ClientActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedList
         firestoreManager = FirestoreManager()
         authManager = AuthManager()
 
-        if (!comprobarNombre()){
+        if (comprobarNombre()){
             crearDialog()
         }
     }
@@ -145,6 +145,7 @@ class ClientActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedList
         val btnOk: Button = dialogView.findViewById(R.id.newName_button)
         btnOk.setOnClickListener {
             asignarNombre(editName.text.toString())
+            alertDialog.dismiss()
         }
         alertDialog.show()
     }

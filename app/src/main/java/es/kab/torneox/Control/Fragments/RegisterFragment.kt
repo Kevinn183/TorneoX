@@ -137,7 +137,7 @@ class RegisterFragment : Fragment() {
     private fun createUser(correo:String, pass:String){
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val newUser = User(correo = correo, contraseña = pass)
+                val newUser = User(correo = correo, contraseña = pass, imagen = "avatar_prede")
                 firestoreManager.addUser(newUser)
             }catch (e:Exception){
                 e.toString()

@@ -5,6 +5,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import es.kab.torneox.Classes.Torneo
 import es.kab.torneox.Classes.User
 import es.kab.torneox.Control.AuthManager
 import kotlinx.coroutines.tasks.await
@@ -144,6 +145,19 @@ class FirestoreManager {
             } else {
                 throw task.exception ?: Exception("Error")
             }
+        }
+    }
+
+    suspend fun addTorneo(torneo: Torneo): Boolean {
+
+        return try {
+            Log.i("llego","llego")
+            firestore.collection("torneos").add(torneo).await()
+            Log.i("llego","llego")
+            true
+        }catch(e: Exception){
+            Log.i("llego","llegoMal")
+            false
         }
     }
 }

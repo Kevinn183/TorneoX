@@ -30,6 +30,8 @@ class AdminActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListe
         binding = ActivityAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.adminBottomNav.setOnItemSelectedListener(this)
+        binding.adminBottomNav.selectedItemId = R.id.item_crear
+        binding.adminBottomNav.setOnItemSelectedListener(this)
         setSupportActionBar(binding.adminToolBar)
     }
 

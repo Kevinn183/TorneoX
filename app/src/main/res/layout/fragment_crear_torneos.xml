@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.Fragments.CrearTorneosFragment">
+    app:cardBackgroundColor="@color/principal"
+    app:cardCornerRadius="55dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:padding="16dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/textViewTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="@string/crear_torneo"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextNombreTorneo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:hint="@string/nombre_torneo" />
+
+        <EditText
+            android:id="@+id/editTextTipoTorneo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextNombreTorneo"
+            android:layout_marginTop="20dp"
+            android:hint="@string/tipo_torneo" />
+
+        <EditText
+            android:id="@+id/editTextFechaInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextTipoTorneo"
+            android:layout_marginTop="20dp"
+            android:drawableEnd="@android:drawable/ic_menu_today"
+            android:focusable="false"
+            android:hint="@string/fyh_torneo"
+            android:inputType="none" />
+
+        <EditText
+            android:id="@+id/editTextLimiteParticipantes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextFechaInicio"
+            android:layout_marginTop="20dp"
+            android:hint="@string/limite_torneo"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnCrearTorneo"
+            android:layout_width="310dp"
+            android:layout_height="89dp"
+            android:layout_below="@id/editTextFechaInicio"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="90dp"
+            android:text="@string/crear_torneo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="355dp"
+            android:layout_height="337dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="435dp"
+            android:src="@drawable/tres" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

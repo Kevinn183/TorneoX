@@ -1,60 +1,129 @@
 package es.kab.torneox.Admin.Fragments
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import com.google.firebase.Timestamp
+import es.kab.torneox.Classes.Torneo
+import es.kab.torneox.Classes.User
+import es.kab.torneox.Firebase.FirestoreManager
 import es.kab.torneox.R
+import es.kab.torneox.databinding.FragmentCrearTorneosBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Period
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CrearTorneosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CrearTorneosFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentCrearTorneosBinding
+    private lateinit var firestoreManager: FirestoreManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_crear_torneos, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CrearTorneosFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CrearTorneosFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        var fechaSeleccionada: Date? = null
+        var horaSeleccionada: Date? = null
+        firestoreManager = FirestoreManager()
+        var timestampInicio = Timestamp.now()
+        binding = FragmentCrearTorneosBinding.inflate(inflater)
+        binding.btnCrearTorneo.setOnClickListener {
+            val nombre = binding.editTextNombreTorneo.text.toString()
+            val tipo = binding.editTextTipoTorneo.text.toString()
+            var limite = binding.editTextLimiteParticipantes.text.toString()
+            val fecha = binding.editTextFechaInicio.text.toString()
+            if (limite.isNullOrBlank()){
+                limite = "999"
+            }
+            if (compruebaDatos(nombre,tipo,fecha, timestampInicio)){
+                lifecycleScope.launch(Dispatchers.IO) {
+                    createTorneo(nombre,tipo,timestampInicio,limite.toInt())
                 }
             }
+
+        }
+        binding.editTextFechaInicio.setOnClickListener {
+
+            val datePicker = DatePickerDialog(requireContext(), { _, year, month, day ->
+                val calendar = Calendar.getInstance()
+                calendar.set(year, month, day)
+                fechaSeleccionada = calendar.time
+
+                val timePicker = TimePickerDialog(requireContext(), { _, hourOfDay, minute ->
+                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                    calendar.set(Calendar.MINUTE, minute)
+                    horaSeleccionada = calendar.time
+
+                    calendar.set(Calendar.YEAR, year)
+                    calendar.set(Calendar.MONTH, month)
+                    calendar.set(Calendar.DAY_OF_MONTH, day)
+                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                    calendar.set(Calendar.MINUTE, minute)
+                    val fechaHoraInicio = calendar.time
+
+                    timestampInicio = Timestamp(fechaHoraInicio)
+
+                    val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+                    val fechaHoraTexto = sdf.format(fechaHoraInicio)
+                    binding.editTextFechaInicio.setText(fechaHoraTexto)
+
+                }, 0, 0, true)
+
+                timePicker.show()
+            }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
+
+            datePicker.show()
+        }
+        return binding.root
     }
+
+
+
+
+    fun compruebaDatos(nombre:String, tipo:String, fecha:String, fechaSeleccionada: Timestamp): Boolean {
+        if (nombre.isNullOrBlank() || tipo.isNullOrBlank() || fecha.isNullOrBlank()){
+            Toast.makeText(context, getString(R.string.casilla_vacia), Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (tipo.lowercase() != "deporte" && tipo.lowercase() != "juegos de mesa"){
+            Toast.makeText(context, getString(R.string.tipo_novalido), Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (fechaSeleccionada.seconds <= Timestamp.now().seconds){
+            Toast.makeText(context, getString(R.string.fecha_no), Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+    }
+
+    private fun createTorneo(nombre:String, tipo:String, fecha: Timestamp, limite:Int){
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val newTorneo = Torneo(estado = "activo", fecha_creacion = Timestamp.now(), fecha_inicio = fecha, limite =limite, nombre =nombre, tipo = tipo)
+                firestoreManager.addTorneo(newTorneo)
+                binding.editTextNombreTorneo.setText("")
+                binding.editTextTipoTorneo.setText("")
+                binding.editTextLimiteParticipantes.setText("")
+                binding.editTextFechaInicio.setText("")
+            }catch (e:Exception){
+                Log.e("torneito", "Error al añadir torneo: ${e.message}", e)
+            }
+        }
+
+    }
+
+
 }

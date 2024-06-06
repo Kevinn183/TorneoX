@@ -112,6 +112,19 @@
     <!-- Lista usuarios -->
     <string name="buscar">Buscar:</string>
 
+    <!-- Crear Torneo -->
+    <string name="crear_torneo">CREAR TORNEO</string>
+    <string name="nombre_torneo">Nombre del torneo</string>
+    <string name="tipo_torneo">Tipo de torneo</string>
+    <string name="fyh_torneo">Fecha y hora de inicio del torneo</string>
+    <string name="limite_torneo">Límite de participantes</string>
+    <string name="tipo_novalido">El tipo introducido no es válido</string>
+    <string name="fecha_no">La fecha debe de ser posterior a la actual</string>
+
+
+
+
+
     <!-- Spinner -->
     <string-array name="spinner_orden">
         <item>victorias</item>
