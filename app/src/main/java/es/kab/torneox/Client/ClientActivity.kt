@@ -44,7 +44,7 @@ class ClientActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedList
         firestoreManager = FirestoreManager()
         authManager = AuthManager()
 
-        if (comprobarNombre()){
+        if (!comprobarNombre()){
             crearDialog()
         }
     }
@@ -122,7 +122,7 @@ class ClientActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedList
                 e.toString()
             }
         }
-        return !username.isNotBlank()
+        return username.equals("")
     }
     fun asignarNombre(name:String){
 

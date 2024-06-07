@@ -121,8 +121,11 @@
     <string name="tipo_novalido">El tipo introducido no es válido</string>
     <string name="fecha_no">La fecha debe de ser posterior a la actual</string>
 
-
-
+    <!-- INICIO -->
+    <string name="no_elementos">ACTUALMENTE NO HAY TORNEOS DISPONIBLES</string>
+    <string name="unirse">UNIRSE</string>
+    <string name="inicio_parti">Numero de participantes:</string>
+    <string name="inicio_limite">Limite de participantes:</string>
 
 
     <!-- Spinner -->

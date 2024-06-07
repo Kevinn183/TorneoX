@@ -1,60 +1,63 @@
 package es.kab.torneox.Client.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import es.kab.torneox.Adapters.TorneosInicioAdapter
+import es.kab.torneox.Adapters.UsersAdapter
+import es.kab.torneox.Firebase.FirestoreManager
 import es.kab.torneox.R
+import es.kab.torneox.databinding.FragmentInicioBinding
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [InicioFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class InicioFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class InicioFragment : Fragment(),TorneosInicioAdapter.OnUnirseClickListener {
+    private lateinit var binding: FragmentInicioBinding
+    private lateinit var firestoreManager: FirestoreManager
+    private lateinit var inicioAdapter: TorneosInicioAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio, container, false)
+        binding = FragmentInicioBinding.inflate(inflater)
+        firestoreManager = FirestoreManager()
+        setUpRecycler()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InicioFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InicioFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
+    fun setUpRecycler(){
+        lifecycleScope.launch {
+            val torneos = firestoreManager.getTorneosInicio(firestoreManager.getUserName())
+            Log.i("fea",torneos?.size.toString())
+            if (torneos.isNullOrEmpty()) {
+
+                binding.recyclerView.visibility = View.GONE
+                binding.emptyTextView.visibility = View.VISIBLE
+            } else {
+                binding.recyclerView.visibility = View.VISIBLE
+                binding.emptyTextView.visibility = View.GONE
+                inicioAdapter = TorneosInicioAdapter(torneos,requireContext(), this@InicioFragment)
+                binding.recyclerView.adapter = inicioAdapter
+                binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
             }
+
+        }
     }
+
+    override fun onUnirseClick(position: Int) {
+        lifecycleScope.launch{
+            firestoreManager.meterParticipante(inicioAdapter.getTorneos()[position].nombre, firestoreManager.getUserName())
+            firestoreManager.sumarParticipante(inicioAdapter.getTorneos()[position].nombre)
+            setUpRecycler()
+        }
+    }
+
 }

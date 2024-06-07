@@ -5,5 +5,7 @@
     <color name="principal">#E5B07E</color>
     <color name="principal_dark">#A66B33</color>
     <color name="fondo_dialog">#635A52</color>
+    <color name="deporte">#86FFBF</color>
+    <color name="mesa">#FB8EB3</color>
 
 </resources>

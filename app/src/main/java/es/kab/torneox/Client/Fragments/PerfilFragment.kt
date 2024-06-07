@@ -1,6 +1,7 @@
 package es.kab.torneox.Client.Fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import es.kab.torneox.Classes.User
 import es.kab.torneox.Control.AuthManager
+import es.kab.torneox.Control.ControlActivity
 import es.kab.torneox.Firebase.FirestoreManager
 import es.kab.torneox.R
 import es.kab.torneox.databinding.FragmentPerfilBinding
@@ -49,6 +51,13 @@ class PerfilFragment : Fragment() {
         }
         binding.fotoCambioPass.setOnClickListener {
             cambiarContraseña()
+        }
+        binding.botonLogout.setOnClickListener {
+            AuthManager().logOut()
+            sharedPreferences.edit().clear().apply()
+            val intent = Intent(requireActivity(), ControlActivity::class.java)
+            startActivity(intent)
+
         }
 
         return binding.root
