@@ -7,6 +7,7 @@ data class Torneo(
     var nombre: String = "",
     var estado: String = "",
     var tipo: String = "",
+    var ganador: String? = "",
     var fecha_creacion: Timestamp? = null,
     var fecha_inicio: Timestamp? = null,
     var numero_participantes: Int = 0,

@@ -210,6 +210,41 @@ class FirestoreManager {
             Log.i( "Error", e.toString())
         }
     }
+    suspend fun restarLimite(nombreTorneo: String) {
+        try {
+            val querySnapshot = firestore.collection("torneos").whereEqualTo("nombre", nombreTorneo).get().await()
+            if (!querySnapshot.isEmpty) {
+                val torneo = querySnapshot.documents[0].reference
+                torneo.update("limite", FieldValue.increment(-1))
+            }
+        } catch (e: Exception) {
+            Log.e("Error", "Error al restar participante: ${e.message}")
+        }
+    }
+
+    suspend fun getTorneosClient(nombreUsuario: String): List<Torneo>? {
+        return try {
+            var query = firestore.collection("torneos")
+                .whereEqualTo("estado", "activo")
+
+            val snapshot = query.get().await()
+
+            val torneosList = mutableListOf<Torneo>()
+            for (document in snapshot.documents) {
+                Log.i("llego","llego")
+                val torneo = document.toObject(Torneo::class.java)
+                if (torneo != null && nombreUsuario in torneo.participantes) {
+                    Log.i("llego","llego")
+                    torneosList.add(torneo)
+                }
+            }
+            torneosList
+        } catch (e: Exception) {
+            Log.i("llegomal","")
+            println(e.message)
+            null
+        }
+    }
 
 
 

@@ -7,12 +7,6 @@
         android:title="@string/crear_encuestas"
         />
     <item
-        android:id="@+id/item_activos"
-        android:enabled="true"
-        android:icon="@drawable/juego_pingpong"
-        android:title="@string/torneos_activos"
-        />
-    <item
         android:id="@+id/item_crear"
         android:enabled="true"
         android:icon="@drawable/juego_pingpong"

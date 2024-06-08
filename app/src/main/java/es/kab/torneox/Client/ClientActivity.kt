@@ -1,7 +1,6 @@
 package es.kab.torneox.Client
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,18 +8,16 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import com.google.android.material.navigation.NavigationBarView
-import es.kab.torneox.Classes.User
 import es.kab.torneox.Client.Fragments.EncuestaFragment
 import es.kab.torneox.Client.Fragments.InicioFragment
 import es.kab.torneox.Client.Fragments.PerfilFragment
 import es.kab.torneox.Client.Fragments.RankingFragment
-import es.kab.torneox.Comun.TorneosActivosFragment
+import es.kab.torneox.Client.Fragments.TorneosActivosFragment
 import es.kab.torneox.Control.AuthManager
 import es.kab.torneox.Control.ControlActivity
 import es.kab.torneox.Firebase.FirestoreManager
@@ -28,7 +25,6 @@ import es.kab.torneox.R
 import es.kab.torneox.databinding.ActivityClientBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ClientActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding : ActivityClientBinding

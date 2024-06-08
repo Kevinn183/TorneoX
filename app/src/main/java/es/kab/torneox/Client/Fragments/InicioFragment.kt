@@ -56,6 +56,7 @@ class InicioFragment : Fragment(),TorneosInicioAdapter.OnUnirseClickListener {
         lifecycleScope.launch{
             firestoreManager.meterParticipante(inicioAdapter.getTorneos()[position].nombre, firestoreManager.getUserName())
             firestoreManager.sumarParticipante(inicioAdapter.getTorneos()[position].nombre)
+            firestoreManager.restarLimite(inicioAdapter.getTorneos()[position].nombre)
             setUpRecycler()
         }
     }

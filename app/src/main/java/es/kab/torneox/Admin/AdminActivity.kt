@@ -13,11 +13,7 @@ import es.kab.torneox.Admin.Fragments.CrearEncuestaFragment
 import es.kab.torneox.Admin.Fragments.CrearTorneosFragment
 import es.kab.torneox.Admin.Fragments.HistorialFragment
 import es.kab.torneox.Admin.Fragments.ListaUsersFragment
-import es.kab.torneox.Client.Fragments.EncuestaFragment
-import es.kab.torneox.Client.Fragments.InicioFragment
-import es.kab.torneox.Client.Fragments.PerfilFragment
-import es.kab.torneox.Client.Fragments.RankingFragment
-import es.kab.torneox.Comun.TorneosActivosFragment
+import es.kab.torneox.Client.Fragments.TorneosActivosFragment
 import es.kab.torneox.Control.AuthManager
 import es.kab.torneox.Control.ControlActivity
 import es.kab.torneox.R
@@ -64,13 +60,6 @@ class AdminActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListe
                 supportFragmentManager.commit {
                     setReorderingAllowed(true)
                     replace<CrearEncuestaFragment>(R.id.AdminFragmentContainer)
-                }
-                true
-            }
-            R.id.item_torneos ->{
-                supportFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    replace<TorneosActivosFragment>(R.id.AdminFragmentContainer)
                 }
                 true
             }
