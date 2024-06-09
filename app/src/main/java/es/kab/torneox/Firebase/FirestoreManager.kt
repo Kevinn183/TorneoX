@@ -189,8 +189,8 @@ class FirestoreManager {
             val querySnapshot = firestore.collection("torneos").whereEqualTo("nombre", nombreTorneo).get().await()
 
             if (!querySnapshot.isEmpty) {
-                val eventoRef = querySnapshot.documents[0].reference
-                eventoRef.update("participantes", FieldValue.arrayUnion(nombreCliente))
+                val torneoRef = querySnapshot.documents[0].reference
+                torneoRef.update("participantes", FieldValue.arrayUnion(nombreCliente))
             }
         } catch (e: Exception) {
             Log.i( "Error", e.toString())
@@ -245,6 +245,65 @@ class FirestoreManager {
             null
         }
     }
+
+    suspend fun getTorneos(): List<Torneo>? {
+        return try {
+            var query = firestore.collection("torneos")
+            val snapshot = query.get().await()
+
+            val torneosList = mutableListOf<Torneo>()
+            for (document in snapshot.documents) {
+                val torneo = document.toObject(Torneo::class.java)
+                if (torneo != null) {
+                    torneosList.add(torneo)
+                }
+
+            }
+            torneosList
+        } catch (e: Exception) {
+            println(e.message)
+            null
+        }
+    }
+    suspend fun sumarVictoria(nombreUsuario: String) {
+        try {
+            val querySnapshot = firestore.collection("usuarios").whereEqualTo("nombre", nombreUsuario).get().await()
+            if (!querySnapshot.isEmpty) {
+                val usuario = querySnapshot.documents[0].reference
+                usuario.update("victorias", FieldValue.increment(1))
+            }
+        } catch (e: Exception) {
+            Log.i( "Error", e.toString())
+        }
+    }
+
+    suspend fun cambiarEstado(nombreTorneo: String,estado: String) {
+        try {
+            val querySnapshot = firestore.collection("torneos").whereEqualTo("nombre", nombreTorneo).get().await()
+
+            if (!querySnapshot.isEmpty) {
+                val torneoRef = querySnapshot.documents[0].reference
+                torneoRef.update("estado", estado)
+            }
+        } catch (e: Exception) {
+            Log.i( "Error", e.toString())
+        }
+    }
+
+    suspend fun addGanador(nombreTorneo: String,nombreUsuario: String) {
+        try {
+            val querySnapshot = firestore.collection("torneos").whereEqualTo("nombre", nombreTorneo).get().await()
+
+            if (!querySnapshot.isEmpty) {
+                val torneoRef = querySnapshot.documents[0].reference
+                torneoRef.update("ganador", nombreUsuario)
+            }
+        } catch (e: Exception) {
+            Log.i( "Error", e.toString())
+        }
+    }
+
+
 
 
 

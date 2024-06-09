@@ -88,9 +88,4 @@ class TorneosClientAdapter (
             }
         }
 
-
-        fun getTorneos(): List<Torneo> {
-            return torneos
-        }
-
 }
