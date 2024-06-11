@@ -26,7 +26,7 @@ class FirestoreManager {
         }
     }
     suspend fun changeUserName(name: String): Boolean {
-            val authManager = AuthManager()
+            authManager = AuthManager()
             var email = authManager.getUserEmail()
             val userId = getUserIdFromEmail(email).await()
             if (userId != null) {
@@ -41,7 +41,7 @@ class FirestoreManager {
         return false
     }
     suspend fun changeUserImage(name: String): Boolean {
-        val authManager = AuthManager()
+        authManager = AuthManager()
         var email = authManager.getUserEmail()
         val userId = getUserIdFromEmail(email).await()
         if (userId != null) {
@@ -98,6 +98,25 @@ class FirestoreManager {
                 val nom = usu.getString("nombre")
                 if (nom != null)
                     return nom
+                return ""
+            } catch (e: Exception) {
+                println(e.message)
+                return ""
+            }
+        }
+        return ""
+    }
+
+    suspend fun getUserPass(): String {
+        val authManager = AuthManager()
+        var email = authManager.getUserEmail()
+        val userId = getUserIdFromEmail(email).await()
+        if (userId != null) {
+            try {
+                val usu = firestore.collection("usuarios").document(userId).get().await()
+                val pass = usu.getString("contraseña")
+                if (pass != null)
+                    return pass
                 return ""
             } catch (e: Exception) {
                 println(e.message)
@@ -302,6 +321,32 @@ class FirestoreManager {
             Log.i( "Error", e.toString())
         }
     }
+    suspend fun checkAdmin(email: String, password: String): Boolean {
+        return try {
+            val querySnapshot = firestore.collection("admins")
+                .whereEqualTo("correo", email)
+                .whereEqualTo("contraseña", password)
+                .get().await()
+
+            !querySnapshot.isEmpty
+        } catch (e: Exception) {
+            Log.i("Error", e.toString())
+            false
+        }
+    }
+    suspend fun checkUserEamil(email: String): Boolean {
+        return try {
+            val querySnapshot = firestore.collection("usuarios")
+                .whereEqualTo("correo", email)
+                .get().await()
+
+            !querySnapshot.isEmpty
+        } catch (e: Exception) {
+            Log.i("Error", e.toString())
+            false
+        }
+    }
+
 
 
 

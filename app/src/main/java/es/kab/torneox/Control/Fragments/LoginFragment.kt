@@ -53,8 +53,7 @@ class LoginFragment : Fragment() {
                     withContext(Dispatchers.Main){
                         if (userLogged != null){
                             sharedPreferences.edit().putString("email", email).apply()
-                            sharedPreferences.edit().putString("pass", pass).apply()
-                            mListener?.onLgnButtonCLicked()
+                            mListener?.onLgnButtonCLicked(email, pass)
                         }else{
                             Toast.makeText(context, getString(R.string.no_usuario), Toast.LENGTH_SHORT).show()
                         }
@@ -81,7 +80,7 @@ class LoginFragment : Fragment() {
     }
 
     interface LoginFragmentListener{
-        fun onLgnButtonCLicked()
+        fun onLgnButtonCLicked(email: String, pass: String)
         fun onTextRecoverCLicked()
         fun onRegisterButtonCLicked()
         fun<T> replace()

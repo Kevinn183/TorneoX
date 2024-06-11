@@ -15,6 +15,7 @@ import es.kab.torneox.Client.ClientActivity
 import es.kab.torneox.Control.Fragments.LoginFragment
 import es.kab.torneox.Control.Fragments.RecoverFragment
 import es.kab.torneox.Control.Fragments.RegisterFragment
+import es.kab.torneox.Firebase.FirestoreManager
 import es.kab.torneox.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,10 +23,12 @@ import kotlinx.coroutines.withContext
 
 class ControlActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener, RegisterFragment.RegisterFragmentListener, RecoverFragment.RecoverFragmentListener {
     lateinit var authManager:AuthManager
+    lateinit var firestoreManager: FirestoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         authManager = AuthManager()
+        firestoreManager = FirestoreManager()
         autoLogin()
         setContentView(R.layout.activity_control)
 
@@ -33,15 +36,15 @@ class ControlActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener
 
     }
 
-    override fun onLgnButtonCLicked() {
-
-        var user = authManager.getUserEmail()
-        if (user.equals("admin@gmail.com")){
-            val intent = Intent(this, AdminActivity::class.java)
-            startActivity(intent)
-        }else{
-            val intent = Intent(this, ClientActivity::class.java)
-            startActivity(intent)
+    override fun onLgnButtonCLicked(email: String, pass: String) {
+        lifecycleScope.launch {
+            if (firestoreManager.checkAdmin(email,pass)){
+                val intent = Intent(applicationContext, AdminActivity::class.java)
+                startActivity(intent)
+            }else{
+                val intent = Intent(applicationContext, ClientActivity::class.java)
+                startActivity(intent)
+            }
         }
 
     }
@@ -83,15 +86,18 @@ class ControlActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener
     fun autoLogin(){
         var sharedPreferences = getSharedPreferences("es.kab.torneox_preferences",Context.MODE_PRIVATE)
         val email = sharedPreferences.getString("email", "")
-        val pass = sharedPreferences.getString("pass","")
-        if (!email.isNullOrBlank() && !pass.isNullOrBlank()){
+        if (!email.isNullOrBlank()){
             lifecycleScope.launch(Dispatchers.IO) {
-                val userLogged = authManager.login(email,pass)
-                withContext(Dispatchers.Main){
-                    if (userLogged != null){
-                        onLgnButtonCLicked()
+                val pass = firestoreManager.getUserPass()
+                if (!pass.isNullOrBlank()){
+                    val userLogged = authManager.login(email,pass)
+                    withContext(Dispatchers.Main){
+                        if (userLogged != null){
+                            onLgnButtonCLicked(email, pass)
+                        }
                     }
                 }
+
             }
         }
     }

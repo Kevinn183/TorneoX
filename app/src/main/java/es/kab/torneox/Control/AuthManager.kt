@@ -49,6 +49,7 @@ class AuthManager {
         }
         return ""
     }
+
     fun logOut(){
         auth.signOut()
     }

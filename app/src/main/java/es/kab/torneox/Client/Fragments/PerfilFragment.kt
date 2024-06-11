@@ -4,12 +4,14 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
@@ -180,25 +182,58 @@ class PerfilFragment : Fragment() {
         builder.setView(dialogView)
         val alertDialog = builder.create()
         val editPass: EditText = dialogView.findViewById(R.id.newPass_editText)
+        val title:TextView = dialogView.findViewById(R.id.newPass_title)
+        title.text = getString(R.string.vieja_pass)
         val btnOk: Button = dialogView.findViewById(R.id.newPass_button)
+        btnOk.text = "OK"
         btnOk.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO) {
+            lifecycleScope.launch(Dispatchers.IO){
                 try {
-                    if (compruebaContrasenya(editPass.text.toString())){
-                        firestoreManager.changeUserPassword(editPass.text.toString())
-                        authManager.changePass(editPass.text.toString())
-                        alertDialog.dismiss()
-                        montarPerfil()
-                        withContext(Dispatchers.Main){
-                            sharedPreferences.edit().putString("pass", editPass.text.toString()).apply()
+                    var op = firestoreManager.getUserPass()
+                    withContext(Dispatchers.Main){
+                        if (editPass.text.toString().equals(op)){
+                            alertDialog.dismiss()
+                            val builder2 = AlertDialog.Builder(requireContext())
+                            val inflater2 = layoutInflater
+                            val dialogView2 = inflater2.inflate(R.layout.dialog_new_pass, null)
+                            builder2.setView(dialogView2)
+                            val alertDialog2 = builder2.create()
+                            val editPass2: EditText = dialogView2.findViewById(R.id.newPass_editText)
+                            val btnOk2: Button = dialogView2.findViewById(R.id.newPass_button)
+                            btnOk2.setOnClickListener {
+
+                                lifecycleScope.launch(Dispatchers.IO) {
+                                    try {
+                                        if (compruebaContrasenya(editPass2.text.toString())){
+
+                                            firestoreManager.changeUserPassword(editPass2.text.toString())
+                                            authManager.changePass(editPass2.text.toString())
+                                            alertDialog2.dismiss()
+                                            montarPerfil()
+                                            withContext(Dispatchers.Main){
+                                            }
+                                        }
+                                    }catch (e:Exception){
+                                        e.toString()
+                                    }
+                                }
+                            }
+                            alertDialog2.show()
+                        }else{
+
+                            Toast.makeText(requireContext(), getString(R.string.contrasenya_diferente), Toast.LENGTH_SHORT ).show()
                         }
                     }
+
                 }catch (e:Exception){
-                    e.toString()
+                    Log.i("err",e.toString())
                 }
             }
         }
         alertDialog.show()
+
+
+
     }
 
 

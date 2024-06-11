@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import es.kab.torneox.Control.AuthManager
+import es.kab.torneox.Firebase.FirestoreManager
 import es.kab.torneox.R
 import es.kab.torneox.databinding.FragmentRecoverBinding
 import kotlinx.coroutines.Dispatchers
@@ -21,12 +22,13 @@ class RecoverFragment : Fragment() {
 
     private lateinit var binding: FragmentRecoverBinding
     private lateinit var mListener: RecoverFragmentListener
+    private lateinit var firestoreManager: FirestoreManager
     private lateinit var authManager: AuthManager
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
+        firestoreManager = FirestoreManager()
         authManager = AuthManager()
         if(context is RecoverFragmentListener){
             mListener = context
@@ -44,11 +46,14 @@ class RecoverFragment : Fragment() {
             val email = binding.userText.editText?.text.toString()
             if (!email.isNullOrBlank()){
                 lifecycleScope.launch(Dispatchers.IO) {
-                    authManager.resetPass(email)
-                    withContext(Dispatchers.Main){
-                        crearDialog()
-                        mListener.onRcoverButtonCLicked()
+                    if(firestoreManager.checkUserEamil(email)){
+                        authManager.resetPass(email)
+                        withContext(Dispatchers.Main){
+                            crearDialog()
+                            mListener.onRcoverButtonCLicked()
+                        }
                     }
+
                 }
             }
         }
