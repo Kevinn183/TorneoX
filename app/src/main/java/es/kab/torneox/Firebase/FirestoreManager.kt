@@ -6,6 +6,8 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.toObject
+import es.kab.torneox.Classes.Encuesta
 import es.kab.torneox.Classes.Torneo
 import es.kab.torneox.Classes.User
 import es.kab.torneox.Control.AuthManager
@@ -347,9 +349,85 @@ class FirestoreManager {
         }
     }
 
+    suspend fun getEncuestaData(): Encuesta? {
+        return try {
+            var query = firestore.collection("encuestas")
+                .whereEqualTo("estado","activo")
+            val snapshot = query.get().await()
+            val document = snapshot.documents.firstOrNull()
 
+            document?.toObject<Encuesta>()
 
+        } catch (e: Exception) {
+            println(e.message)
+            null
+        }
+    }
 
+    suspend fun addEncuesta(encuesta: Encuesta): Boolean {
+
+        return try {
+            firestore.collection("encuestas").add(encuesta).await()
+            true
+        }catch(e: Exception){
+            false
+        }
+    }
+
+    suspend fun cambiarEstadoEncuesta() {
+        try {
+            val querySnapshot = firestore.collection("encuestas").whereEqualTo("estado", "activo").get().await()
+
+            if (!querySnapshot.isEmpty) {
+                val torneoRef = querySnapshot.documents[0].reference
+                torneoRef.update("estado", "cerrado")
+            }
+        } catch (e: Exception) {
+            Log.i( "Error", e.toString())
+        }
+    }
+    suspend fun usuarioVotado(username:String):Boolean {
+        return try {
+            val querySnapshot = firestore.collection("encuestas").whereArrayContains("usuarios_voto", username).get().await()
+
+            !querySnapshot.isEmpty
+        } catch (e: Exception) {
+            Log.i( "Error", e.toString())
+            false
+        }
+
+    }
+    suspend fun sumarVoto(voto: String) {
+        try {
+            val querySnapshot = firestore.collection("encuestas").whereEqualTo("estado", "activo").get().await()
+            if (!querySnapshot.isEmpty) {
+                val encuesta = querySnapshot.documents[0].reference
+                if (voto.equals("v1")){
+                    encuesta.update("votos1", FieldValue.increment(1))
+                }else if (voto.equals("v2")){
+                    encuesta.update("votos2", FieldValue.increment(1))
+                }else{
+                    encuesta.update("votos3", FieldValue.increment(1))
+                }
+
+            }
+        } catch (e: Exception) {
+            Log.i( "Error", e.toString())
+        }
+    }
+
+    suspend fun meterVotante(username: String) {
+        try {
+            val querySnapshot = firestore.collection("encuestas").whereEqualTo("estado", "activo").get().await()
+
+            if (!querySnapshot.isEmpty) {
+                val torneoRef = querySnapshot.documents[0].reference
+                torneoRef.update("usuarios_voto", FieldValue.arrayUnion(username))
+            }
+        } catch (e: Exception) {
+            Log.i( "Error", e.toString())
+        }
+    }
 
 
 

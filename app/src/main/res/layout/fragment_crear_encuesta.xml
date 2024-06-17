@@ -1,9 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.Fragments.CrearEncuestaFragment">
+    android:padding="16dp">
 
+    <TextView
+        android:id="@+id/cr_enc_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="160dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/crear_encuesta"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/titulo_enc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/tit_enc"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@id/opcion1_enc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cr_enc_titulo" />
+
+    <LinearLayout
+        android:id="@+id/opcion1_enc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/titulo_enc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/opcion2_enc"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintHeight_default="wrap">
+
+        <EditText
+            android:id="@+id/et_opcion1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/op1"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_votos1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opcion2_enc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/opcion1_enc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ll_opcion3"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintHeight_default="wrap">
+
+        <EditText
+            android:id="@+id/et_opcion2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/op2"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_votos2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_opcion3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/opcion2_enc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_crear_encuesta"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintHeight_default="wrap">
+
+        <EditText
+            android:id="@+id/et_opcion3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/op3"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_votos3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_crear_encuesta"
+        android:layout_width="359dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="96dp"
+        android:text="@string/crear_encuesta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_cerrar_encuesta"
+        android:layout_width="359dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:text="@string/cerrar_encuesta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

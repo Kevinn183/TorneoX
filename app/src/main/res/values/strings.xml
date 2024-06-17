@@ -93,6 +93,19 @@
     <string name="cerrar_torneo">CERRAR TORNEO</string>
     <string name="elegir_ganador">Antes de cerrar un torneo deberas elegir un ganador</string>
 
+    <!-- Crear encuesta -->
+    <string name="crear_encuesta">CREAR ENCUESTA</string>
+    <string name="cerrar_encuesta">CERRAR ENCUESTA</string>
+    <string name="tit_enc">Título de la encuesta</string>
+    <string name="op1">Opción 1</string>
+    <string name="op2">Opción 2</string>
+    <string name="op3">Opción 3</string>
+    <string name="voto">voto</string>
+
+    <!-- Ver encuesta -->
+    <string name="no_enc">NO HAY ENCUESTAS</string>
+    <string name="votar_enc">Votar</string>
+    <string name="ya_vot">Ya has votado en esta encuesta</string>
     <!-- Spinner -->
     <string-array name="spinner_orden">
         <item>victorias</item>
