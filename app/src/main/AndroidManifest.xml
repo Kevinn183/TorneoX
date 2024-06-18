@@ -3,22 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.NOTIFICATION" />
+    <uses-permission android:name="es.kab.torneox.permission.C2D_MESSAGE" />
+
+
+
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_color"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TorneoX"
         android:usesCleartextTraffic="true"
+        android:screenOrientation="portrait"
         tools:targetApi="31">
+
+        <service
+            android:name=".Firebase.PushNotificationsService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".Admin.AdminActivity"
             android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".Client.ClientActivity"
             android:exported="false" />
@@ -39,5 +57,6 @@
             android:name=".MainActivity"
             android:exported="true" />
     </application>
+
 
 </manifest>

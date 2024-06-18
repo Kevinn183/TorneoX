@@ -11,6 +11,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.Timestamp
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.RemoteMessage
+import com.google.android.gms.tasks.OnCompleteListener
+
 import es.kab.torneox.Classes.Torneo
 import es.kab.torneox.Classes.User
 import es.kab.torneox.Firebase.FirestoreManager
@@ -24,8 +28,15 @@ import java.time.Period
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.tasks.await
+
+import java.util.HashMap
 
 
+@Suppress("DEPRECATION")
 class CrearTorneosFragment : Fragment() {
     private lateinit var binding: FragmentCrearTorneosBinding
     private lateinit var firestoreManager: FirestoreManager
@@ -49,6 +60,7 @@ class CrearTorneosFragment : Fragment() {
                 limite = "999"
             }
             if (compruebaDatos(nombre,tipo,fecha, timestampInicio)){
+                sendNotification()
                 lifecycleScope.launch(Dispatchers.IO) {
                     createTorneo(nombre,tipo,timestampInicio,limite.toInt())
                 }
@@ -123,6 +135,23 @@ class CrearTorneosFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun sendNotification() {
+        val title = "Título de la notificación"
+        val body = "Cuerpo de la notificación"
+
+        val data = mapOf(
+            "title" to title,
+            "body" to body
+        )
+
+        FirebaseMessaging.getInstance().send(
+            RemoteMessage.Builder("/topics/todos_usuarios")
+                .setMessageId(System.currentTimeMillis().toString())
+                .setData(data)
+                .build()
+        )
     }
 
 

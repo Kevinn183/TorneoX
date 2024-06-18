@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+
     namespace = "es.kab.torneox"
     compileSdk = 34
 
@@ -48,9 +49,13 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
     implementation("com.google.firebase:firebase-auth")
     implementation ("com.google.firebase:firebase-firestore-ktx")
+    implementation ("com.google.firebase:firebase-messaging-ktx")
 
     //QR
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 
 
     implementation("androidx.core:core-ktx:1.9.0")

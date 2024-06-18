@@ -18,7 +18,7 @@
     <string name="edad_insuficiente">El usuario no tiene la suficiente edad para usar la app</string>
 
     <string name="no_usuario">El usuario introducido no existe</string>
-    <string name="registro">REGISTRARSE</string>
+    <string name="registro" translatable="false">REGISTRARSE</string>
     <string name="iniciar">INICIAR SESIÓN</string>
     <string name="recuperar">Recuperar contraseña</string>
 
@@ -33,27 +33,26 @@
     <string name="encuestas">ENCUESTAS</string>
     <string name="torneos">TORNEOS</string>
     <string name="inicio">INICIO</string>
-    <string name="ranking">RANKING</string>
-    <string name="perfil">PERFIL</string>
+    <string name="ranking" translatable="false">RANKING</string>
+    <string name="perfil" translatable="false">PERFIL</string>
 
     <!-- Admin -->
     <string name="crear_encuestas">CREAR ENCUESTAS</string>
     <string name="torneos_activos">TORNEOS ACTIVOS</string>
     <string name="crear_torneos">CREAR TORNEOS</string>
     <string name="lista_usuarios">LISTA DE USUARIOS</string>
-    <string name="historial_torneos">HISTORIAL</string>
+    <string name="historial_torneos" translatable="false">HISTORIAL</string>
 
     <!-- Menu superior -->
-    <string name="cambiar_idioma">IDIOMA</string>
+    <string name="cambiar_idioma" translatable="false">IDIOMA</string>
     <string name="cerrar_sesion">CERRAR SESIÓN</string>
 
     <!-- Dialog nuevo nombre -->
     <string name="registrar_nombre">INTRODUCE EL NOMBRE DE USUARIO</string>
     <string name="username">Nombre de usuario</string>
-    <string name="registrar">REGISTRAR</string>
+    <string name="registrar" translatable="false">REGISTRAR</string>
 
     <!-- Perfil -->
-    <string name="num_vic">Número de victorias:</string>
     <string name="num_part">Número de participaciones:</string>
     <string name="corr_per">Correo:</string>
     <string name="elegir_imagen">ELIGE UNA IMAGEN DE PRFIL</string>
@@ -61,8 +60,8 @@
     <string name="nueva_pass">INTRODUCE LA NUEVA CONTRASEÑA</string>
 
     <!-- Ranking -->
-    <string name="num_vic_rank">Num. Vict:</string>
-    <string name="num_part_rank">Num. Part:</string>
+    <string name="num_vic_rank" translatable="false">Num. Vict:</string>
+    <string name="num_part_rank" translatable="false">Num. Part:</string>
 
     <!-- Lista usuarios -->
     <string name="buscar">Buscar:</string>
@@ -84,7 +83,6 @@
 
     <!-- torneos cliente -->
     <string name="no_activos">ACTUALMENTE NO PARTICIPAS EN TORNEOS ACTIVOS</string>
-    <string name="tu_qr">TÚ CÓDIGO</string>
 
     <!-- Ganador -->
     <string name="ganador">GANADOR</string>
@@ -104,7 +102,7 @@
 
     <!-- Ver encuesta -->
     <string name="no_enc">NO HAY ENCUESTAS</string>
-    <string name="votar_enc">Votar</string>
+    <string name="votar_enc" translatable="false">Votar</string>
     <string name="ya_vot">Ya has votado en esta encuesta</string>
     <!-- Spinner -->
     <string-array name="spinner_orden">
@@ -112,5 +110,7 @@
         <item>participaciones</item>
         <item>nombre</item>
     </string-array>
+    <string name="num_vic">Número de victorias:</string>
+    <string name="tu_qr">TÚ CÓDIGO</string>
 
 </resources>

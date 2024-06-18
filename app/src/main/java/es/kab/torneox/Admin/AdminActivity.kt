@@ -1,6 +1,8 @@
 package es.kab.torneox.Admin
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -18,6 +20,7 @@ import es.kab.torneox.Control.AuthManager
 import es.kab.torneox.Control.ControlActivity
 import es.kab.torneox.R
 import es.kab.torneox.databinding.ActivityAdminBinding
+import java.util.Locale
 
 class AdminActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding : ActivityAdminBinding
@@ -45,9 +48,7 @@ class AdminActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListe
                 startActivity(intent)
                 true
             }
-            R.id.actionLenguage->{
-                TODO()
-            }
+
             else -> {
                 false
             }
@@ -87,4 +88,6 @@ class AdminActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListe
             else -> false
         }
     }
+
+
 }

@@ -1,7 +1,9 @@
 package es.kab.torneox.Client
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -25,6 +27,7 @@ import es.kab.torneox.R
 import es.kab.torneox.databinding.ActivityClientBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class ClientActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding : ActivityClientBinding
@@ -40,7 +43,7 @@ class ClientActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedList
         firestoreManager = FirestoreManager()
         authManager = AuthManager()
 
-        if (!comprobarNombre()){
+        if (comprobarNombre()){
             crearDialog()
         }
     }
@@ -58,9 +61,6 @@ class ClientActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedList
                 val intent = Intent(this, ControlActivity::class.java)
                 startActivity(intent)
                 true
-            }
-            R.id.actionLenguage->{
-                TODO()
             }
             else -> {
                 false
@@ -145,4 +145,7 @@ class ClientActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedList
         }
         alertDialog.show()
     }
+
+
+
 }

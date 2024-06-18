@@ -53,6 +53,7 @@ class LoginFragment : Fragment() {
                     withContext(Dispatchers.Main){
                         if (userLogged != null){
                             sharedPreferences.edit().putString("email", email).apply()
+
                             mListener?.onLgnButtonCLicked(email, pass)
                         }else{
                             Toast.makeText(context, getString(R.string.no_usuario), Toast.LENGTH_SHORT).show()

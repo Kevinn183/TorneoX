@@ -3,12 +3,14 @@ package es.kab.torneox.Control
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.messaging.FirebaseMessaging
 import es.kab.torneox.Admin.AdminActivity
 import es.kab.torneox.Client.ClientActivity
 
@@ -20,6 +22,7 @@ import es.kab.torneox.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Locale
 
 class ControlActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener, RegisterFragment.RegisterFragmentListener, RecoverFragment.RecoverFragmentListener {
     lateinit var authManager:AuthManager
@@ -29,6 +32,7 @@ class ControlActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener
         super.onCreate(savedInstanceState)
         authManager = AuthManager()
         firestoreManager = FirestoreManager()
+
         autoLogin()
         setContentView(R.layout.activity_control)
 
@@ -38,6 +42,7 @@ class ControlActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener
 
     override fun onLgnButtonCLicked(email: String, pass: String) {
         lifecycleScope.launch {
+            FirebaseMessaging.getInstance().subscribeToTopic("todos_usuarios")
             if (firestoreManager.checkAdmin(email,pass)){
                 val intent = Intent(applicationContext, AdminActivity::class.java)
                 startActivity(intent)
@@ -101,4 +106,5 @@ class ControlActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener
             }
         }
     }
+
 }

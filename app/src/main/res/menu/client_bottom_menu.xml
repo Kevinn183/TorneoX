@@ -3,31 +3,31 @@
     <item
         android:id="@+id/item_encuestas"
         android:enabled="true"
-        android:icon="@drawable/juego_pingpong"
+        android:icon="@drawable/enc"
         android:title="@string/encuestas"
         />
     <item
         android:id="@+id/item_torneos"
         android:enabled="true"
-        android:icon="@drawable/juego_pingpong"
+        android:icon="@drawable/torn"
         android:title="@string/torneos"
         />
     <item
         android:id="@+id/item_inicio"
         android:enabled="true"
-        android:icon="@drawable/juego_pingpong"
+        android:icon="@drawable/hom"
         android:title="@string/inicio"
         />
     <item
         android:id="@+id/item_ranking"
         android:enabled="true"
-        android:icon="@drawable/juego_pingpong"
+        android:icon="@drawable/ran"
         android:title="@string/ranking"
         />
     <item
         android:id="@+id/item_perfil"
         android:enabled="true"
-        android:icon="@drawable/juego_pingpong"
+        android:icon="@drawable/avatar_prede"
         android:title="@string/perfil"
         />
 
